@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="200" viewBox="0 0 900 200">
+  <defs>
+    <linearGradient id="bg-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0907"/>
+      <stop offset="100%" stop-color="#131210"/>
+    </linearGradient>
+    <radialGradient id="blue-glow" cx="20%" cy="50%" r="40%">
+      <stop offset="0%" stop-color="#2557d4" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#2557d4" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="lime-glow" cx="60%" cy="50%" r="35%">
+      <stop offset="0%" stop-color="#a3d900" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#a3d900" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.9" fill="#1e1c1a"/>
+    </pattern>
+    <linearGradient id="left-bar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a3d900" stop-opacity="0"/>
+      <stop offset="30%" stop-color="#a3d900" stop-opacity="1"/>
+      <stop offset="70%" stop-color="#4d7ff0" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#4d7ff0" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="divider" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#272420" stop-opacity="0"/>
+      <stop offset="30%" stop-color="#272420" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#272420" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="text-glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="200" fill="url(#bg-grad)"/>
+  <rect width="900" height="200" fill="url(#grid)"/>
+  <rect width="900" height="200" fill="url(#blue-glow)"/>
+  <rect width="900" height="200" fill="url(#lime-glow)"/>
+
+  <!-- Outer border -->
+  <rect width="900" height="200" fill="none" stroke="#222018" stroke-width="1"/>
+
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="3" height="200" fill="url(#left-bar)"/>
+
+  <!-- Top-left corner bracket -->
+  <path d="M14 14 L14 38 M14 14 L42 14" fill="none" stroke="#2557d4" stroke-width="1.5" stroke-linecap="square" opacity="0.7"/>
+  <!-- Bottom-left corner bracket -->
+  <path d="M14 186 L14 162 M14 186 L42 186" fill="none" stroke="#a3d900" stroke-width="1.5" stroke-linecap="square" opacity="0.7"/>
+  <!-- Top-right corner bracket -->
+  <path d="M886 14 L886 38 M886 14 L858 14" fill="none" stroke="#a3d900" stroke-width="1.5" stroke-linecap="square" opacity="0.5"/>
+  <!-- Bottom-right corner bracket -->
+  <path d="M886 186 L886 162 M886 186 L858 186" fill="none" stroke="#2557d4" stroke-width="1.5" stroke-linecap="square" opacity="0.5"/>
+
+  <!-- Hex ring (left decorative) -->
+  <polygon points="78,56 106,72 106,104 78,120 50,104 50,72"
+           fill="none" stroke="#2557d4" stroke-width="1" opacity="0.3"/>
+  <polygon points="78,64 100,76 100,100 78,112 56,100 56,76"
+           fill="none" stroke="#4d7ff0" stroke-width="0.6" opacity="0.2"/>
+  <!-- Center diamond in hex -->
+  <rect x="68" y="78" width="20" height="20" rx="2"
+        fill="#0f1825" stroke="#2557d4" stroke-width="1.2" opacity="0.8"
+        transform="rotate(45 78 88)"/>
+  <circle cx="78" cy="88" r="5" fill="#4d7ff0" opacity="0.6"/>
+  <circle cx="78" cy="88" r="2.5" fill="#a3d900" opacity="0.9"/>
+
+  <!-- Vertical separator -->
+  <rect x="124" y="30" width="1" height="140" fill="url(#divider)"/>
+
+  <!-- CHEATLAB main text -->
+  <text x="152" y="105"
+        font-family="'Segoe UI', 'Arial Black', system-ui, sans-serif"
+        font-size="62" font-weight="900" letter-spacing="-3"
+        filter="url(#text-glow)">
+    <tspan fill="#4d7ff0" fill-opacity="0.15">CheatLab</tspan>
+  </text>
+  <text x="152" y="105"
+        font-family="'Segoe UI', 'Arial Black', system-ui, sans-serif"
+        font-size="62" font-weight="900" letter-spacing="-3">
+    <tspan fill="#4d7ff0">Cheat</tspan><tspan fill="#a3d900">Lab</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="154" y="128"
+        font-family="'Segoe UI', system-ui, sans-serif"
+        font-size="13.5" font-weight="500" fill="#6a6058" letter-spacing="1">
+    SHADOW FIGHT 2  ·  SAVE EDITOR  ·  WINDOWS
+  </text>
+
+  <!-- Horizontal rule under tagline -->
+  <rect x="154" y="142" width="360" height="1" fill="url(#divider)"/>
+
+  <!-- Feature chips -->
+  <!-- Auto Scan -->
+  <rect x="154" y="152" width="76" height="20" rx="3" fill="#0d1628" stroke="#2557d4" stroke-width="0.8" opacity="0.9"/>
+  <circle cx="168" cy="162" r="3" fill="#4d7ff0"/>
+  <text x="176" y="166" font-family="'Segoe UI',sans-serif" font-size="10" font-weight="700" fill="#7aa3f5">Auto Scan</text>
+
+  <!-- Auto Save -->
+  <rect x="238" y="152" width="76" height="20" rx="3" fill="#0d1628" stroke="#2557d4" stroke-width="0.8" opacity="0.9"/>
+  <circle cx="252" cy="162" r="3" fill="#4d7ff0"/>
+  <text x="260" y="166" font-family="'Segoe UI',sans-serif" font-size="10" font-weight="700" fill="#7aa3f5">Auto Save</text>
+
+  <!-- Portable -->
+  <rect x="322" y="152" width="70" height="20" rx="3" fill="#0d1e06" stroke="#a3d900" stroke-width="0.8" opacity="0.9"/>
+  <circle cx="336" cy="162" r="3" fill="#a3d900"/>
+  <text x="344" y="166" font-family="'Segoe UI',sans-serif" font-size="10" font-weight="700" fill="#a3d900">Portable</text>
+
+  <!-- Auto Update -->
+  <rect x="400" y="152" width="86" height="20" rx="3" fill="#1a1205" stroke="#f39c12" stroke-width="0.8" opacity="0.9"/>
+  <circle cx="414" cy="162" r="3" fill="#f39c12"/>
+  <text x="422" y="166" font-family="'Segoe UI',sans-serif" font-size="10" font-weight="700" fill="#f39c12">Auto Update</text>
+
+  <!-- Open Source -->
+  <rect x="494" y="152" width="88" height="20" rx="3" fill="#150e1a" stroke="#9b59b6" stroke-width="0.8" opacity="0.9"/>
+  <circle cx="508" cy="162" r="3" fill="#9b59b6"/>
+  <text x="516" y="166" font-family="'Segoe UI',sans-serif" font-size="10" font-weight="700" fill="#c39bd3">Open Source</text>
+
+  <!-- Right side: scan line decoration -->
+  <line x1="680" y1="50" x2="870" y2="50" stroke="#1e1c1a" stroke-width="1"/>
+  <line x1="680" y1="70" x2="870" y2="70" stroke="#1e1c1a" stroke-width="1"/>
+  <line x1="680" y1="90" x2="870" y2="90" stroke="#1e1c1a" stroke-width="1"/>
+  <line x1="680" y1="110" x2="870" y2="110" stroke="#1e1c1a" stroke-width="1"/>
+  <line x1="680" y1="130" x2="870" y2="130" stroke="#1e1c1a" stroke-width="1"/>
+  <line x1="680" y1="150" x2="870" y2="150" stroke="#1e1c1a" stroke-width="1"/>
+
+  <!-- Right decorative vertical bars -->
+  <rect x="700" y="50" width="2" height="100" rx="1" fill="#2557d4" opacity="0.2"/>
+  <rect x="720" y="60" width="2" height="80" rx="1" fill="#2557d4" opacity="0.15"/>
+  <rect x="740" y="55" width="2" height="90" rx="1" fill="#a3d900" opacity="0.12"/>
+  <rect x="760" y="70" width="2" height="60" rx="1" fill="#2557d4" opacity="0.1"/>
+  <rect x="780" y="50" width="2" height="100" rx="1" fill="#a3d900" opacity="0.15"/>
+  <rect x="800" y="65" width="2" height="70" rx="1" fill="#2557d4" opacity="0.2"/>
+  <rect x="820" y="58" width="2" height="84" rx="1" fill="#a3d900" opacity="0.1"/>
+  <rect x="840" y="50" width="2" height="100" rx="1" fill="#2557d4" opacity="0.15"/>
+  <rect x="860" y="68" width="2" height="64" rx="1" fill="#a3d900" opacity="0.18"/>
+
+  <!-- KDO credit -->
+  <text x="886" y="194"
+        font-family="'Segoe UI',sans-serif" font-size="10" font-weight="600"
+        fill="#2e2a26" text-anchor="end">by KDO</text>
+</svg>

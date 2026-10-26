@@ -1,21 +1,16 @@
 <div align="center">
-  <img src="public/logo.png" alt="CheatLab Logo" width="90" height="90" /><br/>
-  <img src="rec/cheatlab_wrokmark.png" alt="CheatLab" height="48" /><br/>
-  <p><strong>Professional Game Save Editor — Desktop</strong></p>
+  <img src="public/banner.svg" alt="CheatLab Banner" width="100%" />
+</div>
 
-  <p>
-    <img src="https://img.shields.io/badge/platform-Windows-0078d4?style=flat-square&logo=windows" alt="Platform" />
-    <img src="https://img.shields.io/badge/electron-v33-47848f?style=flat-square&logo=electron" alt="Electron" />
-    <img src="https://img.shields.io/badge/react-v18-61dafb?style=flat-square&logo=react" alt="React" />
-    <img src="https://img.shields.io/badge/typescript-v5-3178c6?style=flat-square&logo=typescript" alt="TypeScript" />
-    <img src="https://img.shields.io/badge/license-MIT-a3d900?style=flat-square" alt="License" />
-  </p>
+<div align="center">
 
-  <p>
-    <img src="https://img.shields.io/badge/Shadow%20Fight%202-supported-4d7ff0?style=flat-square" alt="SF2" />
-    <img src="https://img.shields.io/badge/Windows%20Store-supported-0078d4?style=flat-square" alt="Windows Store" />
-    <img src="https://img.shields.io/badge/Emulators-BlueStacks%20%7C%20MEmu%20%7C%20LDPlayer-27ae60?style=flat-square" alt="Emulators" />
-  </p>
+  [![GitHub release](https://img.shields.io/github/v/release/kdo2064/cheatlab?style=flat-square&color=a3d900&label=latest)](https://github.com/kdo2064/cheatlab/releases)
+  [![Downloads](https://img.shields.io/github/downloads/kdo2064/cheatlab/total?style=flat-square&color=4d7ff0&label=downloads)](https://github.com/kdo2064/cheatlab/releases)
+  [![Stars](https://img.shields.io/github/stars/kdo2064/cheatlab?style=flat-square&color=f0c040&label=stars)](https://github.com/kdo2064/cheatlab/stargazers)
+  [![Forks](https://img.shields.io/github/forks/kdo2064/cheatlab?style=flat-square&color=9b59b6&label=forks)](https://github.com/kdo2064/cheatlab/forks)
+  [![License](https://img.shields.io/badge/license-MIT-a3d900?style=flat-square)](LICENSE)
+  [![Visitors](https://visitor-badge.laobi.icu/badge?page_id=kdo2064.cheatlab&style=flat-square&color=2557d4)](https://github.com/kdo2064/cheatlab)
+
 </div>
 
 ---
@@ -30,34 +25,41 @@ Currently supports **Shadow Fight 2** with a clean, tool-like interface built fo
 
 ## Features
 
-- **Auto Scan** — automatically finds SF2 save files from Windows Store, BlueStacks, LDPlayer, Nox, MEmu, and more
-- **Auto Save** — 1-second debounce auto-save with manual override
-- **BOM Fix** — handles Windows Store saves with UTF-8 BOM (the common "parse error" fix)
-- **Auto Update** — pulls new releases from GitHub automatically, no reinstall needed
-- **Portable** — single `.exe`, no Node.js or runtime required on target machine
-- **Frameless UI** — custom window chrome, drag regions, professional dark theme
+|  | Feature | Description |
+|---|---|---|
+| 🔍 | **Auto Scan** | Finds SF2 saves from Windows Store, BlueStacks, LDPlayer, Nox, MEmu automatically |
+| 💾 | **Auto Save** | 1-second debounce auto-save — changes save as you type |
+| 🔧 | **BOM Fix** | Handles Windows Store saves with UTF-8 BOM (fixes the common parse error) |
+| 🔄 | **Auto Update** | Pulls new releases from GitHub silently — no reinstall needed |
+| 📦 | **Portable** | Single `.exe`, no Node.js or runtime needed on target machine |
+| 🖥️ | **Frameless UI** | Custom window chrome, drag regions, professional dark theme |
+| 🔌 | **Offline** | Fully offline — no server, no account, no internet required |
 
 ---
 
 ## Supported Games
 
-| Game | Status |
-|---|---|
-| Shadow Fight 2 | ✅ Fully supported |
-| Minecraft | 🔜 Coming soon |
-| Terraria | 🔜 Coming soon |
-| Stardew Valley | 🔜 Coming soon |
+| Game | Status | Source |
+|---|---|---|
+| Shadow Fight 2 | ✅ **Supported** | Windows Store · BlueStacks · LDPlayer · Nox · MEmu |
+| Minecraft | 🔜 Coming soon | — |
+| Terraria | 🔜 Coming soon | — |
+| Stardew Valley | 🔜 Coming soon | — |
 
 ---
 
 ## Download
 
-> Head to [**Releases**](../../releases) for the latest build.
+<div align="center">
 
-| File | Description |
-|---|---|
-| `CheatLab Setup x.x.x.exe` | Installer (recommended) |
-| `CheatLab-x.x.x-portable.exe` | Portable — no install, run anywhere |
+[![Download Latest](https://img.shields.io/github/v/release/kdo2064/cheatlab?style=for-the-badge&color=2557d4&label=Download%20Latest&logo=windows)](https://github.com/kdo2064/cheatlab/releases/latest)
+
+</div>
+
+| File | Type | Info |
+|---|---|---|
+| `CheatLab Setup x.x.x.exe` | Installer | Recommended — desktop shortcut, auto-update |
+| `CheatLab-x.x.x-portable.exe` | Portable | No install — copy anywhere and run |
 
 ---
 
@@ -73,14 +75,14 @@ cd cheatlab
 # Install dependencies
 npm install
 
-# Run in dev mode
+# Dev mode (hot reload)
 npm run dev
 
 # Build Windows installer + portable
 npm run build:win
 ```
 
-Output goes to `dist-electron/`.
+Output → `dist-electron/`
 
 ---
 
@@ -88,15 +90,21 @@ Output goes to `dist-electron/`.
 
 ```
 cheatlab/
-├── electron/           # Main process (Node.js / Electron)
-│   ├── main.cjs        # App entry, IPC handlers, file I/O
-│   └── preload.cjs     # Context bridge (renderer ↔ main)
-├── src/                # Renderer process (React + TypeScript)
-│   ├── components/     # UI components
-│   └── App.tsx         # Root component
-├── public/             # Static assets (logo, wordmark)
-├── assets/             # Build assets (app icon)
-└── .github/workflows/  # CI/CD — auto build on push, release on tag
+├── electron/
+│   ├── main.cjs          # Main process — file I/O, IPC, auto-updater
+│   └── preload.cjs       # Context bridge (renderer ↔ main)
+├── src/
+│   ├── components/       # React UI components
+│   │   ├── TitleBar.tsx  # Window chrome + save status + update banner
+│   │   ├── Sidebar.tsx   # Game selector
+│   │   ├── FileDropZone.tsx  # Home screen — scan + open
+│   │   └── Editor/       # SF2 editor tabs
+│   └── App.tsx
+├── public/               # Static assets (logo, wordmark, banner)
+├── assets/               # Build assets (app icon for electron-builder)
+└── .github/workflows/    # CI/CD
+    ├── ci.yml            # Push → typecheck + build verify
+    └── release.yml       # Tag → build + GitHub Release
 ```
 
 ---
@@ -105,17 +113,17 @@ cheatlab/
 
 | Trigger | Action |
 |---|---|
-| Push to `main` | TypeScript check + Vite build (verify only) |
-| Push tag `v*.*.*` | Full Windows build → upload `.exe` to GitHub Release |
+| Push to `main` | TypeScript check + Vite build (verify only, no publish) |
+| Push `v*.*.*` tag | Full Windows build → create GitHub Release + upload `.exe` |
 
-To ship a release:
+**To ship a release:**
 
 ```bash
 git tag v1.0.1
 git push origin v1.0.1
 ```
 
-GitHub Actions handles the rest.
+GitHub Actions builds the `.exe` and creates the release automatically.
 
 ---
 
@@ -125,30 +133,34 @@ Contributions are welcome — bug fixes, new game support, UI improvements, anyt
 
 ### How to contribute
 
-1. **Fork** this repo
-2. Create a branch: `git checkout -b feature/your-feature`
-3. Make your changes and commit
+1. **Fork** this repo (button top-right)
+2. Create your branch: `git checkout -b feature/my-feature`
+3. Commit your changes
 4. Open a Pull Request
+
+### Adding a new game
+
+Each game gets its own component. SF2's implementation is the reference — follow the same pattern and open a PR.
 
 ### Credit
 
-If you fork CheatLab and build on top of it — great. Just keep the original credit in your project:
+If you fork CheatLab and build something new — go ahead. Just keep the original credit somewhere visible:
 
 ```
 Based on CheatLab by KDO — https://github.com/kdo2064/cheatlab
 ```
 
-No need to ask permission — just don't remove the attribution. That's the only ask.
-
----
-
-## Adding a New Game
-
-Game parsers live in `src/` — each game gets its own component/tab. SF2's parser is in the editor components as a reference. PRs adding new game support are especially welcome.
+No need to ask permission. That attribution line is the only ask.
 
 ---
 
 ## License
 
-[MIT](LICENSE) — free to use, modify, and distribute.  
-Built by **KDO**.
+[MIT](LICENSE) — free to use, modify, and distribute.
+
+<div align="center">
+  <br/>
+  <img src="rec/cheatlab_wrokmark.png" alt="CheatLab" height="32" />
+  <br/>
+  <sub>Built by <strong>KDO</strong></sub>
+</div>
