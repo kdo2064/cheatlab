@@ -1,0 +1,86 @@
+{
+  "name": "cheatlab-desktop",
+  "version": "1.0.0",
+  "description": "CheatLab Desktop - Professional Game Save Editor",
+  "author": "KDO",
+  "license": "MIT",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "concurrently -n vite,electron -c cyan,yellow \"vite\" \"wait-on http://localhost:5173 && electron .\"",
+    "build": "vite build",
+    "build:win": "npm run build && electron-builder --win",
+    "build:win:publish": "npm run build && electron-builder --win --publish always",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "electron-updater": "^6.8.11",
+    "fflate": "^0.8.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.0.1",
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.5",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.9",
+    "wait-on": "^8.0.1"
+  },
+  "build": {
+    "appId": "com.kdo.cheatlab",
+    "productName": "CheatLab",
+    "copyright": "KDO",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "files": [
+      "dist/**",
+      "electron/**",
+      "package.json"
+    ],
+    "extraResources": [],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.png",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "CheatLab",
+      "deleteAppDataOnUninstall": false
+    },
+    "portable": {
+      "artifactName": "CheatLab-${version}-portable.exe"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "kdo2064",
+      "repo": "cheatlab",
+      "releaseType": "release"
+    }
+  }
+}
