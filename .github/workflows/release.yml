@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   build-windows:
-    name: Build Windows Installer
+    name: Build & Release Windows
     runs-on: windows-latest
 
     steps:
@@ -26,20 +26,31 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build & publish Electron app (Windows)
-        run: npm run build:win:publish
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build Vite + Electron (no auto-publish)
+        run: npm run build:win
 
-      - name: Upload artifacts to release
+      - name: Create GitHub Release & upload assets
         uses: softprops/action-gh-release@v2
         with:
-          files: |
-            dist-electron/*.exe
-            dist-electron/*.zip
-            dist-electron/latest.yml
+          name: CheatLab ${{ github.ref_name }}
+          body: |
+            ## CheatLab ${{ github.ref_name }}
+
+            ### Download
+            | File | Info |
+            |---|---|
+            | `CheatLab Setup *.exe` | Installer — recommended |
+            | `CheatLab-*-portable.exe` | Portable — no install needed |
+
+            ### What's New
+            See commit history for changes in this release.
+
+            ---
+            **by KDO** · [GitHub](https://github.com/kdo2064/cheatlab)
           draft: false
           prerelease: ${{ contains(github.ref_name, '-beta') || contains(github.ref_name, '-alpha') }}
-          generate_release_notes: true
+          files: |
+            dist-electron/*.exe
+            dist-electron/latest.yml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

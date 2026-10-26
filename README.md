@@ -1,8 +1,6 @@
 <div align="center">
-  <img src="public/logo.png" alt="CheatLab Logo" width="100" height="100" />
-  <h1>
-    <span style="color:#4d7ff0">Cheat</span><span style="color:#a3d900">Lab</span>
-  </h1>
+  <img src="public/logo.png" alt="CheatLab Logo" width="90" height="90" /><br/>
+  <img src="rec/cheatlab_wrokmark.png" alt="CheatLab" height="48" /><br/>
   <p><strong>Professional Game Save Editor — Desktop</strong></p>
 
   <p>
