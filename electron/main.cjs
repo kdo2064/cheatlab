@@ -90,6 +90,10 @@ function getScanDirs() {
 }
 
 function createWindow() {
+  const iconPath = app.isPackaged
+    ? path.join(__dirname, '../dist/logo.png')
+    : path.join(__dirname, '../public/logo.png');
+
   const win = new BrowserWindow({
     width: 1280,
     height: 800,
@@ -97,6 +101,7 @@ function createWindow() {
     minHeight: 640,
     frame: false,
     backgroundColor: '#080806',
+    icon: iconPath,
     webPreferences: {
       preload: path.join(__dirname, 'preload.cjs'),
       contextIsolation: true,

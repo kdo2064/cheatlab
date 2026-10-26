@@ -17,34 +17,79 @@
 
 ## What is CheatLab?
 
-**CheatLab Desktop** is a fast, offline-capable save file editor for mobile games — built for Windows. No browser, no internet required. Just open your save, edit values, save — done.
-
-Currently supports **Shadow Fight 2** with a clean, tool-like interface built for power users.
+**CheatLab Desktop** is an offline save file editor for **Shadow Fight 2** — built for Windows. It reads your SF2 save file, lets you edit every value you want, and writes it back. No root, no cheat engine, no internet. Just open your save, mod it, done.
 
 ---
 
-## Features
+## What You Can Edit
 
-|  | Feature | Description |
-|---|---|---|
-| 🔍 | **Auto Scan** | Finds SF2 saves from Windows Store, BlueStacks, LDPlayer, Nox, MEmu automatically |
-| 💾 | **Auto Save** | 1-second debounce auto-save — changes save as you type |
-| 🔧 | **BOM Fix** | Handles Windows Store saves with UTF-8 BOM (fixes the common parse error) |
-| 🔄 | **Auto Update** | Pulls new releases from GitHub silently — no reinstall needed |
-| 📦 | **Portable** | Single `.exe`, no Node.js or runtime needed on target machine |
-| 🖥️ | **Frameless UI** | Custom window chrome, drag regions, professional dark theme |
-| 🔌 | **Offline** | Fully offline — no server, no account, no internet required |
+### Dashboard
+- **Coins** — set any amount up to 999,999,999
+- **Gems** — set any amount up to 999,999,999
+- **Level** — set player level (1–52)
+- **Energy** — set energy value, or toggle **Unlimited Energy** (removes the energy limit entirely)
+- **Inventory summary** — see how many weapons, armors, helms, ranged, and magic items you own
+
+### Weapons / Armor / Helms / Ranged & Magic
+- **Own or unown** any item with a single toggle
+- **Set upgrade level** — type a number or hit MAX to fully upgrade
+- **Equip** any item directly from the editor
+
+### Shadow
+- **Strength** — set up to 9,999
+- **Stamina** — set up to 99
+- **Shadow Body upgrade** — set up to 99,999 (HP + Speed)
+- **Shadow Head upgrade** — set up to 99,999 (Critical hits)
+- **Shadow Fists upgrade** — set up to 99,999 (Attack Speed)
+- **Equipped loadout** — change your active Weapon, Armor, Helm, Ranged and Magic from dropdowns
+
+### Levels & Zones
+- **Unlock any battle** across all 6 zones
+- **Set current zone** — jump directly to any zone (Sensei → Butcher → Wasp → Hermit → Shogun → Widow)
+
+---
+
+## MAX EVERYTHING
+
+One button on the Dashboard sets everything to maximum in one click:
+
+| What | Value |
+|---|---|
+| Coins | 999,999,999 |
+| Gems | 999,999,999 |
+| Level | 52 |
+| Strength | 9,999 |
+| Stamina | 99 |
+| Zone | Zone 6 (Widow) |
+| All items | Owned + fully upgraded |
+| All battles | Unlocked |
+| Shadow Body/Head/Fists | 99,999 |
+| Energy | Unlimited |
+
+---
+
+## Other Features
+
+| Feature | Description |
+|---|---|
+| **Auto Scan** | Finds SF2 saves automatically — Windows Store, BlueStacks, LDPlayer, Nox, MEmu |
+| **Auto Save** | Saves changes 1 second after you stop editing |
+| **Backup** | Creates a `.backup` of your original save on first save — never lose the original |
+| **Restore Backup** | One click to go back to the backed-up save |
+| **Auto Update** | Downloads new versions from GitHub silently — no reinstall needed |
+| **Portable** | Single `.exe`, no install, no Node.js needed |
+| **Offline** | No server, no account, no internet required |
 
 ---
 
 ## Supported Games
 
-| Game | Status | Source |
-|---|---|---|
-| Shadow Fight 2 | ✅ **Supported** | Windows Store · BlueStacks · LDPlayer · Nox · MEmu |
-| Minecraft | 🔜 Coming soon | — |
-| Terraria | 🔜 Coming soon | — |
-| Stardew Valley | 🔜 Coming soon | — |
+| Game | Status |
+|---|---|
+| Shadow Fight 2 | ✅ **Supported** — Windows Store · BlueStacks · LDPlayer · Nox · MEmu |
+| Minecraft | 🔜 Coming soon |
+| Terraria | 🔜 Coming soon |
+| Stardew Valley | 🔜 Coming soon |
 
 ---
 
@@ -68,11 +113,8 @@ Currently supports **Shadow Fight 2** with a clean, tool-like interface built fo
 > Requires [Node.js 18+](https://nodejs.org)
 
 ```bash
-# Clone
 git clone https://github.com/kdo2064/cheatlab.git
 cd cheatlab
-
-# Install dependencies
 npm install
 
 # Dev mode (hot reload)
@@ -94,15 +136,19 @@ cheatlab/
 │   ├── main.cjs          # Main process — file I/O, IPC, auto-updater
 │   └── preload.cjs       # Context bridge (renderer ↔ main)
 ├── src/
-│   ├── components/       # React UI components
-│   │   ├── TitleBar.tsx  # Window chrome + save status + update banner
-│   │   ├── Sidebar.tsx   # Game selector
+│   ├── components/
+│   │   ├── TitleBar.tsx      # Window chrome, save status, update banner
+│   │   ├── Sidebar.tsx       # Game selector
 │   │   ├── FileDropZone.tsx  # Home screen — scan + open
-│   │   └── Editor/       # SF2 editor tabs
+│   │   └── sf2/              # SF2 editor tabs
+│   │       ├── DashboardTab.tsx
+│   │       ├── ItemsTab.tsx
+│   │       ├── ShadowTab.tsx
+│   │       └── LevelsTab.tsx
 │   └── App.tsx
 ├── public/               # Static assets (logo, wordmark, banner)
 ├── assets/               # Build assets (app icon for electron-builder)
-└── .github/workflows/    # CI/CD
+└── .github/workflows/
     ├── ci.yml            # Push → typecheck + build verify
     └── release.yml       # Tag → build + GitHub Release
 ```
@@ -113,44 +159,35 @@ cheatlab/
 
 | Trigger | Action |
 |---|---|
-| Push to `main` | TypeScript check + Vite build (verify only, no publish) |
-| Push `v*.*.*` tag | Full Windows build → create GitHub Release + upload `.exe` |
-
-**To ship a release:**
+| Push to `main` | TypeScript check + Vite build verify |
+| Push `v*.*.*` tag | Full Windows build → GitHub Release + upload `.exe` |
 
 ```bash
 git tag v1.0.1
 git push origin v1.0.1
 ```
 
-GitHub Actions builds the `.exe` and creates the release automatically.
-
 ---
 
 ## Contributing
 
-Contributions are welcome — bug fixes, new game support, UI improvements, anything.
+Bug fixes, new game support, UI improvements — all welcome.
 
-### How to contribute
-
-1. **Fork** this repo (button top-right)
-2. Create your branch: `git checkout -b feature/my-feature`
-3. Commit your changes
-4. Open a Pull Request
+1. Fork this repo
+2. `git checkout -b feature/my-feature`
+3. Commit and open a Pull Request
 
 ### Adding a new game
 
-Each game gets its own component. SF2's implementation is the reference — follow the same pattern and open a PR.
+SF2's implementation is the reference. Follow the same pattern (parser → types → editor tabs) and open a PR.
 
 ### Credit
 
-If you fork CheatLab and build something new — go ahead. Just keep the original credit somewhere visible:
+If you fork CheatLab and build something new — go ahead. Just keep the original credit visible:
 
 ```
 Based on CheatLab by KDO — https://github.com/kdo2064/cheatlab
 ```
-
-No need to ask permission. That attribution line is the only ask.
 
 ---
 

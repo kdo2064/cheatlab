@@ -111,7 +111,7 @@ export default function TitleBar({ fileName, saveStatus, autoSave, onToggleAutoS
             >
               <span
                 className="relative h-3 w-5 rounded-[3px] transition-colors"
-                style={{ background: autoSave ? '#c0392b' : '#2a2420' }}
+                style={{ background: autoSave ? '#27ae60' : '#2a2420' }}
               >
                 <span
                   className="absolute top-0.5 h-2 w-2 rounded-[1px] transition-transform"
